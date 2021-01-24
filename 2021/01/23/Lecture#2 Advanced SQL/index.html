@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Advanced SQLRelational LanguagesSQL的组成 Data Manipulation Language (DML) 数据操作语言：insert, select, update……  Data Definition Language  (DDL) 通过定义schemas来创建表存储数据  Data Control Language (DCL) 安全性授权（控制哪些人可以读">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2021/01/23/Lecture#2%20Advanced%20SQL/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Advanced SQLRelational LanguagesSQL的组成 Data Manipulation Language (DML) 数据操作语言：insert, select, update……  Data Definition Language  (DDL) 通过定义schemas来创建表存储数据  Data Control Language (DCL) 安全性授权（控制哪些人可以读">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/Users/hannahzhang/Desktop/截屏2021-01-23下午8.12.55.png">
+<meta property="article:published_time" content="2021-01-23T09:55:26.107Z">
+<meta property="article:modified_time" content="2021-01-24T11:49:35.728Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/Users/hannahzhang/Desktop/截屏2021-01-23下午8.12.55.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Lecture#2 Advanced SQL" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/23/Lecture#2%20Advanced%20SQL/" class="article-date">
+  <time class="dt-published" datetime="2021-01-23T09:55:26.107Z" itemprop="datePublished">2021-01-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Advanced-SQL"><a href="#Advanced-SQL" class="headerlink" title="Advanced SQL"></a>Advanced SQL</h1><h3 id="Relational-Languages"><a href="#Relational-Languages" class="headerlink" title="Relational Languages"></a>Relational Languages</h3><h4 id="SQL的组成"><a href="#SQL的组成" class="headerlink" title="SQL的组成"></a>SQL的组成</h4><ul>
+<li><p>Data Manipulation Language (DML)</p>
+<p>数据操作语言：insert, select, update……</p>
+</li>
+<li><p>Data Definition Language  (DDL)</p>
+<p>通过定义schemas来创建表存储数据</p>
+</li>
+<li><p>Data Control Language (DCL)</p>
+<p>安全性授权（控制哪些人可以读取哪些数据）</p>
+</li>
+</ul>
+<p>==注意==：<em>Relational algebra is based on sets (unordered, no duplicates). SQL is based on bags (unordered, allows duplicates).</em>  <strong>SQL是无序的，可以有重复元素</strong></p>
+<p><em>数据库模型如下：</em></p>
+<img src="/Users/hannahzhang/Desktop/截屏2021-01-23下午8.12.55.png" alt="截屏2021-01-23下午8.12.55" style="zoom: 33%;" />
+
+<h3 id="Aggregates（聚合函数）"><a href="#Aggregates（聚合函数）" class="headerlink" title="Aggregates（聚合函数）"></a>Aggregates（聚合函数）</h3><p>返回select语句执行得到的结果の函数，输入多个Tuple，输出单个结果</p>
+<p>==<strong>聚合函数只能出现在select子句中作输出列</strong>==</p>
+<p>从一堆元组返回单个值得函数：</p>
+<p>→ <code>AVG(col)</code>→ 返回所有值の平均值</p>
+<p>→ <code>MIN(col)</code>→ 返回最小の行值</p>
+<p>→ <code>MAX(col)</code>→ 返回最大の行值</p>
+<p>→ <code>SUM(col)</code>→ 返回所有行值の总和</p>
+<p>→ <code>COUNT(col)</code>→ 返回行数</p>
+<p>e.g 数出student表中login字段中以@cs结尾的学生数量</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(login) <span class="keyword">AS</span> cnt</span><br><span class="line">	<span class="keyword">FROM</span> student <span class="keyword">WHERE</span> login <span class="keyword">LIKE</span> <span class="string">&#x27;%@cs&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><em>Tuple数与login无关，改写如下</em></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">AS</span> cnt</span><br><span class="line">	<span class="keyword">FROM</span> student <span class="keyword">WHERE</span> login <span class="keyword">LIKE</span> <span class="string">&#x27;%@cs&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>*<em>‘</em>‘代表Tuple中所有属性**</p>
+<p><strong>每数一个Tuple，Tuple的数量就+1，代码改写如下：</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="number">1</span>) <span class="keyword">AS</span> cnt</span><br><span class="line">	<span class="keyword">FROM</span> student <span class="keyword">WHERE</span> login <span class="keyword">LIKE</span> <span class="string">&#x27;%@cs&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="Mutiple-Aggregates"><a href="#Mutiple-Aggregates" class="headerlink" title="Mutiple Aggregates"></a>Mutiple Aggregates</h4><p>Get the number of students and their average GPA that have a “@cs” login.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">AVG</span>(gpa), <span class="built_in">COUNT</span>(sid)</span><br><span class="line">	<span class="keyword">FROM</span> student <span class="keyword">WHERE</span> login <span class="keyword">LIKE</span> <span class="string">&#x27;%@cs&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="Distinct-Aggregates"><a href="#Distinct-Aggregates" class="headerlink" title="Distinct Aggregates"></a>Distinct Aggregates</h4><p>COUNT, SUM, AVG support <strong>DISTINCT</strong></p>
+<p>student表中，login字段中以”@cs”结尾的不重复的学生的个数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="keyword">DISTINCT</span> login)</span><br><span class="line">	<span class="keyword">FROM</span> student <span class="keyword">WHERE</span> login <span class="keyword">LIKE</span> <span class="string">&#x27;%@cs&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="Group-By"><a href="#Group-By" class="headerlink" title="Group By"></a>Group By</h4><p>将元组投影到子集中并针对每个子集计算聚合</p>
+<p>==<strong>SELECT输出子句中的非聚合值必须出现在GROUP BY子句中</strong>==</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">AVG</span>(s.gpa), e.cid, s.name</span><br><span class="line">	<span class="keyword">FROM</span> enrolled <span class="keyword">AS</span> e, student <span class="keyword">AS</span> s</span><br><span class="line"> <span class="keyword">WHERE</span> e.sid <span class="operator">=</span> s.sid</span><br><span class="line"> <span class="keyword">GROUP</span> <span class="keyword">BY</span> e.cid, s.name</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="HAVING"><a href="#HAVING" class="headerlink" title="HAVING"></a>HAVING</h4><p><em>（由于aggregation还没有完成，所以无法在WHERE语句中使用聚合函数结果过滤tuple）</em> 因此，需要使用HAVING语句根据聚合计算过滤结果。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">AVG</span>(s.gpa) <span class="keyword">AS</span> avg_gpa, e.cid</span><br><span class="line">	<span class="keyword">FROM</span> enrolled <span class="keyword">AS</span> e, student <span class="keyword">AS</span> s</span><br><span class="line"> <span class="keyword">WHERE</span> e.sid <span class="operator">=</span> s.sid</span><br><span class="line"> <span class="keyword">GROUP</span> <span class="keyword">BY</span> e.cid</span><br><span class="line"> <span class="keyword">HAVING</span> avg_gpa <span class="operator">&gt;</span> <span class="number">3.9</span></span><br></pre></td></tr></table></figure>
+<h3 id="String-Operations—字符串处理"><a href="#String-Operations—字符串处理" class="headerlink" title="String Operations—字符串处理"></a>String Operations—字符串处理</h3><p>==String相关函数可以出现在查询中的任何地方==</p>
+<h4 id="字符串匹配"><a href="#字符串匹配" class="headerlink" title="字符串匹配"></a>字符串匹配</h4><p><code>LIKE</code>用于字符串匹配。</p>
+<p>字符串匹配运算符:</p>
+<p>→ <code>&#39;%&#39;</code> 匹配任意长度的字符串（包括空字符串）</p>
+<p>→<code>&#39;_&#39;</code> 仅仅匹配一个字符</p>
+<p>e.g.</p>
+<p>查询某学生名字的前五个字母</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">SUBSTRING</span>(name, <span class="number">0</span>, <span class="number">5</span>) <span class="keyword">AS</span> abbrv_name</span><br><span class="line">	<span class="keyword">FROM</span> student <span class="keyword">WHERE</span> sid <span class="operator">=</span> <span class="number">53688</span></span><br></pre></td></tr></table></figure>
+<p>找出学生名字转化成大写后开头是KAN的数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> student <span class="keyword">AS</span> s</span><br><span class="line">	<span class="keyword">FROM</span> <span class="built_in">UPPER</span>(e.name) <span class="keyword">LIKE</span> <span class="string">&#x27;KAN%&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h4><p>SQL-92:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> student </span><br><span class="line">	<span class="keyword">WHERE</span> login <span class="operator">=</span> <span class="built_in">LOWER</span>(name) <span class="operator">||</span> <span class="string">&#x27;@cs&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>MSSQL:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> student</span><br><span class="line">	<span class="keyword">WHERE</span> login <span class="operator">=</span> <span class="built_in">LOWER</span>(name) <span class="operator">+</span> <span class="string">&#x27;@cs&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>MySQL</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> student </span><br><span class="line">	<span class="keyword">WHERE</span> login <span class="operator">=</span> CONCAT(<span class="built_in">LOWER</span>(name), <span class="string">&#x27;@cs&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><em>MySQL还可以直接拼接</em>：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="string">&#x27;hello&#x27;</span> <span class="string">&#x27; world&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="DATE-TIME-OPERATIONS"><a href="#DATE-TIME-OPERATIONS" class="headerlink" title="DATE/TIME OPERATIONS"></a>DATE/TIME OPERATIONS</h4><p>在SQL中一般支持三种数据类型。</p>
+<ul>
+<li><strong>date：</strong>日历日期，包括年（四位），月和日。</li>
+<li><strong>time：</strong>一天中的时间，包括小时，分和秒。可以用变量**time(p)**来表示秒的小数点后的数字位数（默认是0）。 通过制定 **time with timezone,**还可以把时区信息连同时间一起存储。</li>
+<li><strong>timestamp: date 和 time</strong>的组合。 可以用变量timestamp(p)来表示秒的小数点后的数字位数（这里默认值为6）。如果指定with timezone，则时区信息也会被存储</li>
+</ul>
+<p>日期和时间类型的值可按如下方式说明：</p>
+<ul>
+<li><p><strong>date：‘2018-01-17’</strong></p>
+</li>
+<li><p><strong>time：‘10:14:00’</strong></p>
+</li>
+<li><p><strong>timestamp：‘2018-01-17 10:14:00.45’</strong></p>
+</li>
+</ul>
+<p><em>demo：get the # of days since the beginning of the year:</em></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> NOW();</span><br></pre></td></tr></table></figure>
+<p>（返回时间戳’2018-08-29 12:30:31’） </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">EXTRACT</span>(<span class="keyword">DAY</span> <span class="keyword">FROM</span> <span class="type">DATE</span>(<span class="string">&#x27;2018-08-29&#x27;</span>));</span><br></pre></td></tr></table></figure>
+<p>（返回数值29）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="type">DATE</span>(<span class="string">&#x27;2018-08-29&#x27;</span>) <span class="operator">-</span> <span class="type">DATE</span>(<span class="string">&#x27;2018-01-01&#x27;</span>) <span class="keyword">AS</span> days</span><br></pre></td></tr></table></figure>
+<p>Postgres: days = 240</p>
+<p>MySQL: days = 728</p>
+<p><strong>将日期转换成UNIX中的时间戳</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ROUND(UNIX_TIMESTAMP((<span class="type">DATE</span>(<span class="string">&#x27;2018-08-29&#x27;</span>))<span class="operator">-</span>UNIX_TIMESTAMP(<span class="type">DATE</span>(<span class="string">&#x27;2018-01-01&#x27;</span>)))<span class="operator">/</span>(<span class="number">60</span><span class="operator">*</span><span class="number">60</span><span class="operator">*</span><span class="number">24</span>),<span class="number">0</span>) <span class="keyword">AS</span> days</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>ROUND 表示四舍五入，这里四舍五入到整数</span><br></pre></td></tr></table></figure>
+<p>MySQL: days = 240</p>
+<p><strong>MySQL中<code>DAYDIFF</code>函数也能起到相同的作用</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> DAYDIFF(<span class="type">DATE</span>(<span class="string">&#x27;2018-08-29&#x27;</span>) <span class="operator">-</span> <span class="type">DATE</span>(<span class="string">&#x27;2018-01-01&#x27;</span>)) <span class="keyword">AS</span> days</span><br></pre></td></tr></table></figure>
+<p>MySQL: days = 240</p>
+<h3 id="Output-Redirection"><a href="#Output-Redirection" class="headerlink" title="Output Redirection"></a>Output Redirection</h3><p>将查询结果存储在另一个表中：</p>
+<ul>
+<li><p>尚未定义表</p>
+</li>
+<li><p>已存在的表格，且具有相同的列数</p>
+</li>
+</ul>
+<p>SQL-92中：使用<code>INTO</code>关键字，执行过程中自动创建table储存结果</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> cid <span class="keyword">INTO</span> CourseIds</span><br><span class="line">	<span class="keyword">FROM</span> enrolled</span><br></pre></td></tr></table></figure>
+<p>MySQL中：使用<code>CREAT TABLE</code>，在其内部定义SELECT语句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> CourseIds (</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> cid <span class="keyword">FROM</span> enrolled);</span><br></pre></td></tr></table></figure>
+<p>将结果插入已有table中：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> CourseIds</span><br><span class="line">(<span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> cid <span class="keyword">FROM</span> enrolled);</span><br></pre></td></tr></table></figure>
+<h3 id="Output-Control"><a href="#Output-Control" class="headerlink" title="Output Control"></a>Output Control</h3><ul>
+<li><p><strong>ORDER BY &lt;column*&gt; [ASC|DESC]</strong></p>
+<p>通过一个或多个列中的值对输出元组进行排序。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> sid, grade <span class="keyword">FROM</span> enrolled</span><br><span class="line"><span class="keyword">WHERE</span> cid <span class="operator">=</span> <span class="string">&#x27;15-721&#x27;</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> grade</span><br></pre></td></tr></table></figure>
+<p>  ==默认升序排列==，<strong>降序排列</strong>表示<code>DESC</code>，<strong>升序排列</strong>表示为<code>ASC</code></p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> sdi, grade <span class="keyword">FROM</span> enrolled</span><br><span class="line">	<span class="keyword">WHERE</span> cid <span class="operator">=</span> <span class="string">&#x27;15-721&#x27;</span></span><br><span class="line">	<span class="keyword">ORDER</span> <span class="keyword">BY</span> grade <span class="keyword">DESC</span>, sid <span class="keyword">ASC</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>LIMIT <count> [offset]</strong></p>
+<ul>
+<li> 限制输出元组的数量</li>
+<li>可以设置一个偏移</li>
+</ul>
+<p>e.g. 只返回10条记录</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> sid, name <span class="keyword">FROM</span> student</span><br><span class="line">	<span class="keyword">WHERE</span> login <span class="keyword">LIKE</span> <span class="string">&#x27;%@cs&#x27;</span></span><br><span class="line">	LIMIT <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> sid, name <span class="keyword">FROM</span> student</span><br><span class="line">	<span class="keyword">WHERE</span> login <span class="keyword">LIKE</span> <span class="string">&#x27;%@cs&#x27;</span></span><br><span class="line">	LIMIT <span class="number">10</span> <span class="keyword">OFFSET</span> <span class="number">20</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+</li>
+</ul>
+<h3 id="NESTED-QUERIES（嵌套查询）"><a href="#NESTED-QUERIES（嵌套查询）" class="headerlink" title="NESTED QUERIES（嵌套查询）"></a>NESTED QUERIES（嵌套查询）</h3><p>包含其他查询的查询通常难以优化，内部查询可以（几乎）出现在查询中的任何位置。</p>
+<p>e.g.“Get the names of students that are enrolled in ’15-445’.”</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> student </span><br><span class="line">	<span class="keyword">WHERE</span> sid <span class="keyword">IN</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> sid <span class="keyword">FROM</span> enrolled</span><br><span class="line">  		<span class="keyword">WHERE</span> cid <span class="operator">=</span> <span class="string">&#x27;15-445&#x27;</span></span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
+<p>==先查询student表==</p>
+<h4 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h4><ul>
+<li><p><code>ALL</code>→ 必须满足子查询中所有行的表达式</p>
+</li>
+<li><p><code>ANY</code>→ 在子查询中必须满足至少一行的表达式。</p>
+</li>
+<li><p><code>IN</code>→ 类似于 ‘=ANY()’ .</p>
+</li>
+<li><p><code>EXISTS</code>→ 至少返回一行</p>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> name <span class="keyword">FROM</span> student </span><br><span class="line">	<span class="keyword">WHERE</span> sid <span class="operator">=</span> <span class="keyword">ANY</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> sid <span class="keyword">FROM</span> enrolled</span><br><span class="line">  		<span class="keyword">WHERE</span> cid <span class="operator">=</span> <span class="string">&#x27;15-445&#x27;</span></span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
+<p>==<strong>内嵌查询可以放在SELECT语句的输出部分处：</strong>==</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> (<span class="keyword">SELECT</span> name <span class="keyword">FROM</span> student <span class="keyword">AS</span> S</span><br><span class="line">       <span class="keyword">WHERE</span> S.sid <span class="operator">=</span> E.sid) <span class="keyword">AS</span> sname</span><br><span class="line">	<span class="keyword">FROM</span> enrolled <span class="keyword">AS</span> E</span><br><span class="line"> <span class="keyword">WHERE</span> cid <span class="operator">=</span> <span class="string">&#x27;15-445&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>==先查询enrolled表==</p>
+<p>e.g.<em>Find student record with the highest id that is enrolled in at least one course.</em></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> sid, name <span class="keyword">FROM</span> student</span><br><span class="line">	<span class="keyword">WHERE</span> sid <span class="operator">=</span><span class="operator">&gt;</span> <span class="keyword">ALL</span>(</span><br><span class="line">  	<span class="keyword">SELECT</span> sid <span class="keyword">FROM</span> enrolled</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> sid, name <span class="keyword">FROM</span> student</span><br><span class="line">	<span class="keyword">WHERE</span> sid <span class="keyword">IN</span> (</span><br><span class="line">  	<span class="keyword">SELECT</span> <span class="built_in">MAX</span>(sid) <span class="keyword">FROM</span> enrolled</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> sid, name <span class="keyword">FROM</span> student</span><br><span class="line">	<span class="keyword">WHERE</span> sid <span class="keyword">IN</span> (</span><br><span class="line"> 		<span class="keyword">SELECT</span> sid <span class="keyword">FROM</span> enrolled</span><br><span class="line">  		<span class="keyword">ORDER</span> <span class="keyword">BY</span> sid <span class="keyword">DESC</span> LIMIT <span class="number">1</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>e.g.<em>Find all courses that has no students enrolled in it.</em></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> course </span><br><span class="line">	<span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>(</span><br><span class="line">  	<span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> enrolled</span><br><span class="line">    	<span class="keyword">WHERE</span> course.cid <span class="operator">=</span> enrolled.cid</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="WINDOW-FUNCTIONS（窗口函数）"><a href="#WINDOW-FUNCTIONS（窗口函数）" class="headerlink" title="WINDOW FUNCTIONS（窗口函数）"></a>WINDOW FUNCTIONS（窗口函数）</h3><p>对一组相关的元组执行“滑动”计算。<br>像聚合一样，但元组不会分组为单个输出元组。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> … FUNC<span class="operator">-</span>NAME(...) <span class="keyword">OVER</span> (...)</span><br><span class="line">	<span class="keyword">FROM</span> tableName</span><br></pre></td></tr></table></figure>
+<p><code>FUNC-NAME</code> : 汇总功能 、特殊功能<br><code>OVER</code>: 切分数据</p>
+<ul>
+<li><p>汇总功能：aggregates</p>
+</li>
+<li><p>特殊功能：</p>
+<ul>
+<li><p><code>ROW_NUMBER()</code>→ <code>ROW_NUMBER()</code>函数作用就是将<code>select</code>查询到的数据进行排序，每一条数据加一个序号，它不能用做于学生成绩的排名，一般多用于分页查询， 比如查询前10个，查询10-100个学生。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span>, <span class="built_in">ROW_NUMBER</span>()<span class="keyword">OVER</span>() <span class="keyword">AS</span> row_num</span><br><span class="line">	<span class="keyword">FROM</span> enrolled</span><br></pre></td></tr></table></figure></li>
+<li><p><code>RANK()</code>→ <code>RANK()</code>函数，排名函数，可以对某一个字段进行排名，这里为什么和<code>ROW_NUMBER()</code>不一样呢，<code>ROW_NUMBER()</code>是排序，当存在相同成绩的学生时，<code>ROW_NUMBER()</code>会依次进行排序，他们序号不同，而<code>Rank()</code>则不一样出现相同的，他们的排名是一样的。</p>
+</li>
+</ul>
+</li>
+<li><p><code>OVER</code>：关键字指定在计算窗口函数时如何将元组组合在一起。 </p>
+<ul>
+<li><p>使用<code>PARTITION BY</code>指定组</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">SELECT</span> <span class="operator">*</span>, <span class="built_in">ROW_NUMBER</span>()<span class="keyword">OVER</span>(<span class="keyword">PARTITION</span> <span class="keyword">BY</span> cid) <span class="keyword">AS</span> row_num</span><br><span class="line"> <span class="keyword">FROM</span> enrolled</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> cid</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用<code>order</code>排序</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span>,</span><br><span class="line">	<span class="built_in">ROW_NUMBER</span>()<span class="keyword">OVER</span>(<span class="keyword">ORDER</span> <span class="keyword">BY</span> cid)</span><br><span class="line"> <span class="keyword">FROM</span> enrolled </span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> cid</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>e.g</p>
+<p>Find the student with the highest grade for each course.</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> (</span><br><span class="line">  <span class="keyword">SELECT</span> <span class="operator">*</span>, </span><br><span class="line">  			<span class="built_in">RANK</span>()<span class="keyword">OVER</span>(<span class="keyword">PARTITION</span> <span class="keyword">BY</span> cid</span><br><span class="line">                           <span class="keyword">ORDER</span> <span class="keyword">BY</span> grade <span class="keyword">ASC</span>)</span><br><span class="line">        <span class="keyword">AS</span> rank</span><br><span class="line">     <span class="keyword">FROM</span> enrolled) <span class="keyword">AS</span> ranking</span><br><span class="line">  <span class="keyword">WHERE</span> ranking.rank <span class="operator">=</span> <span class="number">1</span>   </span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="COMMON-TABLE-EXPRESSIONS（公用表表达式）"><a href="#COMMON-TABLE-EXPRESSIONS（公用表表达式）" class="headerlink" title="COMMON TABLE EXPRESSIONS（公用表表达式）"></a>COMMON TABLE EXPRESSIONS（公用表表达式）</h3><p>提供一种编写用于较大查询的辅助语句的方法。</p>
+<p>→可以将其视为仅用于一个查询的临时表。 嵌套查询和视图的替代方法。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WITH</span> cteName <span class="keyword">AS</span> (</span><br><span class="line">  <span class="keyword">SELECT</span> <span class="number">1</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> cteName</span><br></pre></td></tr></table></figure>
+<p>可以将输出列绑定到AS关键字之前的名称。</p>
+<h4 id="CTE的递归"><a href="#CTE的递归" class="headerlink" title="CTE的递归"></a>CTE的递归</h4><p>==Adding the RECURSIVE keyword after WITH allows a CTE to reference itself.==</p>
+<p>Example: Print the sequence of numbers from 1 to 10.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WITH</span> <span class="keyword">RECURSIVE</span> cteSourse (counter) <span class="keyword">AS</span> (</span><br><span class="line">	(<span class="keyword">SELECT</span> <span class="number">1</span>)</span><br><span class="line">  <span class="keyword">UNION</span> <span class="operator">/</span><span class="operator">/</span> 甚至可以不写<span class="keyword">union</span></span><br><span class="line">  (<span class="keyword">SELECT</span> counter <span class="operator">+</span> <span class="number">1</span> <span class="keyword">FROM</span> cteSourse</span><br><span class="line">  <span class="keyword">WHERE</span> counter <span class="operator">&lt;</span> <span class="number">10</span>)</span><br><span class="line">)</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> cteSourse</span><br></pre></td></tr></table></figure>
+<p><code>UNION</code> 操作符用于合并两个或多个 SELECT 语句的结果集。</p>
+<p>默认地，<code>UNION</code> 操作符选取不同的值，如果允许重复的值，使用<code>UNION ALL</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/23/Lecture#2%20Advanced%20SQL/" data-id="ckkb48ipa0001bgs6aasg477v" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/01/24/Lecture#1%20Course%20Introduction%20and%20the%20Relational%20Model/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/24/Lecture#1%20Course%20Introduction%20and%20the%20Relational%20Model/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/23/Lecture#2%20Advanced%20SQL/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
